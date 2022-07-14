@@ -3,7 +3,6 @@ package com.mmit.entity;
 import java.time.LocalDate;
 
 public class Student {
-
 	private String name;
 	private String phone;
 	private String email;
@@ -47,5 +46,4 @@ public class Student {
 	public void setBatch(String batch) {
 		this.batch = batch;
 	}
-	
 }

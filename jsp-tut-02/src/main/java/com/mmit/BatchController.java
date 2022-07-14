@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/batches"})
-public class BatchController extends HttpServlet {
+public class BatchController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -38,31 +38,33 @@ public class BatchController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		getServletContext().getRequestDispatcher("/batch.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// get data from parameter
-		String batch_name = req.getParameter("batch");
-		String start_date = req.getParameter("start_date");
-		
-		// create application scope
-		ServletContext context = getServletConfig().getServletContext();
-		
-		// create list and get batch list from app scope
-		List<Batch> list = (ArrayList<Batch>) context.getAttribute("batches");
-		
-		//  add batch obj to list
-		if(list == null) {
-			list = new ArrayList<Batch>();
-		}
-		list.add(new Batch(batch_name, LocalDate.parse(start_date)));
-		
-		// add list to application
-		context.setAttribute("batches", list);
-		
-		// invoke
-		resp.sendRedirect(req.getContextPath() + "/batches");
+				String batch_name = req.getParameter("batch");
+				String start_date = req.getParameter("start_date");
+				
+				// create application scope
+				ServletContext context = getServletConfig().getServletContext();
+				
+				// create list and get batch list from app scope
+				List<Batch> list = (ArrayList<Batch>) context.getAttribute("batches");
+				
+				//  add batch obj to list
+				if(list == null) {
+					list = new ArrayList<Batch>();
+				}
+				list.add(new Batch(batch_name, LocalDate.parse(start_date)));
+				
+				// add list to application
+				context.setAttribute("batches", list);
+				
+				// invoke
+				resp.sendRedirect(req.getContextPath() + "/batches");
 	}
+
 }

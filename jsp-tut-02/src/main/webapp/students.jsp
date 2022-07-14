@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title><%= request.getAttribute("title") %></title>
+<title><%= request.getAttribute("title") %>e</title>
 <jsp:include page="common/res.jsp"></jsp:include>
 </head>
 <body>
-	<!-- nav -->
+<!-- nav -->
 	<jsp:include page="common/nav.jsp"></jsp:include>
 <div class="container">
 	<div class="row mt-2">
